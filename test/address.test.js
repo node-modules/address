@@ -98,6 +98,16 @@ describe('address.test.js', function () {
         done();
       });
     });
+
+    it('should return first local loopback addrs from linux', function (done) {
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
+      address('lo', function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.should.property('ip').with.equal('127.0.0.1');
+        done();
+      });
+    });
   });
 
   describe('address.mac()', function () {
