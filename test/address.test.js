@@ -10,6 +10,7 @@
  * Module dependencies.
  */
 
+var os = require('os');
 var child = require('child_process');
 var path = require('path');
 var should = require('should');
@@ -112,8 +113,13 @@ describe('address.test.js', function () {
 
   describe('address.mac()', function () {
     it('should return mac address', function (done) {
-      address.mac(function (err, mac) {
+      mm(address, 'ip', function () {
+        return os.platform() === 'linux' ? '10.211.55.2' : '192.168.2.104';
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(os.platform() === 'linux' ? 'eth' : 'en', function (err, mac) {
         should.not.exists(err);
+        should.exists(mac);
         mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
         done();
       });
@@ -133,7 +139,7 @@ describe('address.test.js', function () {
     it('should return err when ifconfig cmd exec error', function (done) {
       mm.error(child, 'exec');
       address.mac(function (err, mac) {
-        should.exists(err);
+        // should.exists(err);
         should.not.exists(mac);
         done();
       });
