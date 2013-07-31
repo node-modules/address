@@ -1,0 +1,4 @@
+search tbsite.net
+options attempts:1 timeout:2
+nameserver 10.125.250.210
+nameserver 172.24.102.254

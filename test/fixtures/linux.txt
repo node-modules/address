@@ -1,0 +1,16 @@
+eth0      Link encap:Ethernet  HWaddr 00:16:3E:00:0A:29  
+          inet addr:10.125.5.202  Bcast:10.125.15.255  Mask:255.255.240.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:4034645 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1877492 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:926626551 (883.6 MiB)  TX bytes:284125548 (270.9 MiB)
+          Interrupt:14 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:17633 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:17633 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:2496787 (2.3 MiB)  TX bytes:2496787 (2.3 MiB)

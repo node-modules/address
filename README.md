@@ -3,7 +3,9 @@ address [![Build Status](https://secure.travis-ci.org/fengmk2/address.png)](http
 
 ![logo](https://raw.github.com/fengmk2/address/master/logo.png)
 
-Get current machine IP and MAC address.
+Get current machine IP, MAC and DNS servers.
+
+DNS servers receive from `/etc/resolv.conf`.
 
 ## Install
 
@@ -13,11 +15,47 @@ $ npm install address
 
 ## Usage
 
+Get IP is sync and get MAC is async for now.
+
 ```js
 var address = require('address');
 
-address.foo(function (err) {
-  
+// default interface 'eth' on linux, 'en' on osx.
+address.ip();   // '192.168.0.2'
+address.ipv6(); // 'fe80::7aca:39ff:feb0:e67d'
+address.mac(function (err, addr) {
+  console.log(addr); // '78:ca:39:b0:e6:7d'
+});
+
+// local loopback
+address.ip('lo'); // '127.0.0.1'
+
+// vboxnet MAC
+address.mac('vboxnet', function (err, addr) {
+  console.log(addr); // '0a:00:27:00:00:00'
+});
+```
+
+### Get all addresses: IPv4, IPv6 and MAC
+
+```js
+address(function (err, addrs) {
+  console.log(addrs.ip, addrs.ipv6, addrs.mac);
+  // '192.168.0.2', 'fe80::7aca:39ff:feb0:e67d', '78:ca:39:b0:e6:7d'
+});
+
+address('vboxnet', function (err, addrs) {
+  console.log(addrs.ip, addrs.ipv6, addrs.mac);
+  // '192.168.56.1', null, '0a:00:27:00:00:00'
+});
+```
+
+### Get DNS servers
+
+```js
+address.dns(function (err, addrs) {
+  console.log(addrs);
+  // ['10.13.2.1', '10.13.2.6']
 });
 ```
 

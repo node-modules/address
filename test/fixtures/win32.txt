@@ -1,0 +1,57 @@
+Windows IP Configuration
+ 
+   Host Name . . . . . . . . . . . . : CJ-VII
+   Primary Dns Suffix  . . . . . . . : 
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+ 
+Ethernet adapter Local Area Connection 2:
+ 
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Anchorfree HSS Adapter
+   Physical Address. . . . . . . . . : 00-FF-95-E2-1A-B2
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+ 
+Ethernet adapter Local Area Connection:
+ 
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : NVIDIA nForce Networking Controller
+   Physical Address. . . . . . . . . : F8-0F-41-13-79-EE
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::f400:f7b2:ec8a:a958%12(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 192.168.0.4(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Monday, 10 September, 2012 00:09:01
+   Lease Expires . . . . . . . . . . : Monday, 10 September, 2012 06:39:16
+   Default Gateway . . . . . . . . . : 192.168.0.1
+   DHCP Server . . . . . . . . . . . : 192.168.0.1
+   DHCPv6 IAID . . . . . . . . . . . : 184028993
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-16-0A-83-DC-F8-0F-41-13-79-EE
+   DNS Servers . . . . . . . . . . . : 65.32.5.111
+                                       65.32.5.112
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+ 
+Tunnel adapter Teredo Tunneling Pseudo-Interface:
+ 
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Teredo Tunneling Pseudo-Interface
+   Physical Address. . . . . . . . . : 00-00-00-00-00-00-00-E0
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:0:9d38:953c:43d:ac2:cda7:67b0(Preferred) 
+   Link-local IPv6 Address . . . . . : fe80::43d:ac2:cda7:67b0%14(Preferred) 
+   Default Gateway . . . . . . . . . : ::
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+ 
+Tunnel adapter isatap.{0B47D2C2-3636-4E51-B6DA-6EEF1042FFAC}:
+ 
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft ISATAP Adapter #3
+   Physical Address. . . . . . . . . : 00-00-00-00-00-00-00-E0
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
