@@ -41,8 +41,8 @@ describe('address.test.js', function () {
       address(function (err, addr) {
         should.not.exists(err);
         addr.should.have.keys('ip', 'ipv6', 'mac');
-        addr.mac.should.match(/^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
-        addr.ip.should.match(/^\d+\.\d+\.\d+\.\d+$/);
+        addr.mac && addr.mac.should.match(/^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
+        addr.ip && addr.ip.should.match(/^\d+\.\d+\.\d+\.\d+$/);
         done();
       });
     });
@@ -114,7 +114,7 @@ describe('address.test.js', function () {
   describe('address.mac()', function () {
     it('should return mac address', function (done) {
       mm(address, 'ip', function () {
-        return os.platform() === 'linux' ? '10.211.55.2' : '192.168.2.104';
+        return os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104';
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
       address.mac(os.platform() === 'linux' ? 'eth' : 'en', function (err, mac) {
