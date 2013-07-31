@@ -1,6 +1,6 @@
 {
   "name": "address",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "description": "Get current machine IP, MAC and DNS servers.",
   "main": "index.js",
   "scripts": {

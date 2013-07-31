@@ -36,12 +36,22 @@ describe('address.test.js', function () {
   });
 
   describe('address()', function () {
+    it('should return first ethernet addrs', function (done) {
+      address(function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.mac.should.match(/^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
+        addr.ip.should.match(/^\d+\.\d+\.\d+\.\d+$/);
+        done();
+      });
+    });
+
     it('should return first ethernet addrs from osx', function (done) {
       mm(address, 'ip', function () {
         return '192.168.2.104';
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
-      address(function (err, addr) {
+      address('en', function (err, addr) {
         should.not.exists(err);
         addr.should.have.keys('ip', 'ipv6', 'mac');
         addr.ip.should.equal('192.168.2.104');
@@ -84,7 +94,7 @@ describe('address.test.js', function () {
       address('lo', function (err, addr) {
         should.not.exists(err);
         addr.should.have.keys('ip', 'ipv6', 'mac');
-        addr.ip.should.equal('127.0.0.1');
+        addr.should.property('ip').with.equal('127.0.0.1');
         done();
       });
     });
