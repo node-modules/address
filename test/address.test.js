@@ -48,8 +48,8 @@ describe('address.test.js', function () {
     });
 
     it('should return first ethernet addrs from osx', function (done) {
-      mm(address, 'ip', function () {
-        return '192.168.2.104';
+      mm(address, 'interface', function () {
+        return {address: '192.168.2.104'};
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
       address('en', function (err, addr) {
@@ -63,8 +63,8 @@ describe('address.test.js', function () {
     });
 
     it('should return first ethernet addrs from linux', function (done) {
-      mm(address, 'ip', function () {
-        return '10.125.5.202';
+      mm(address, 'interface', function () {
+        return {address: '10.125.5.202'};
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
       address('eth', function (err, addr) {
@@ -111,10 +111,28 @@ describe('address.test.js', function () {
     });
   });
 
+  describe('interface()', function () {
+    it('should return interface with family', function () {
+      var item = address.interface();
+      should.exists(item);
+      item.should.have.property('address');
+      item.should.have.property('family');
+    });
+  });
+
   describe('address.mac()', function () {
-    it('should return mac address', function (done) {
-      mm(address, 'ip', function () {
-        return os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104';
+    it('should return mac', function (done) {
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac address', function (done) {
+      mm(address, 'interface', function () {
+        return {address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104'};
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
       address.mac(os.platform() === 'linux' ? 'eth' : 'en', function (err, mac) {
@@ -126,7 +144,7 @@ describe('address.test.js', function () {
     });
 
     it('should return null when ip not exists', function (done) {
-      mm(address, 'ip', function () {
+      mm(address, 'interface', function () {
         return null;
       });
       address.mac(function (err, mac) {
@@ -137,6 +155,9 @@ describe('address.test.js', function () {
     });
 
     it('should return err when ifconfig cmd exec error', function (done) {
+      mm(address, 'interface', function () {
+        return null;
+      });
       mm.error(child, 'exec');
       address.mac(function (err, mac) {
         // should.exists(err);

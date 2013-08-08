@@ -50,6 +50,13 @@ address('vboxnet', function (err, addrs) {
 });
 ```
 
+### Get an interface info with family
+
+```js
+address.interface('IPv4', 'eth1');
+// { address: '192.168.1.1', family: 'IPv4', mac: '78:ca:39:b0:e6:7d' }
+```
+
 ### Get DNS servers
 
 ```js
