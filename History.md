@@ -1,4 +1,9 @@
 
+0.0.3 / 2013-11-04 
+==================
+
+  * get the first not local ip when interface not exists
+
 0.0.2 / 2013-08-08 
 ==================
 
