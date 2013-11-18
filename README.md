@@ -1,6 +1,8 @@
 address [![Build Status](https://secure.travis-ci.org/fengmk2/address.png)](http://travis-ci.org/fengmk2/address) [![Coverage Status](https://coveralls.io/repos/fengmk2/address/badge.png)](https://coveralls.io/r/fengmk2/address)
 =======
 
+[![NPM](https://nodei.co/npm/address.png?downloads=true&stars=true)](https://nodei.co/npm/address/)
+
 ![logo](https://raw.github.com/fengmk2/address/master/logo.png)
 
 Get current machine IP, MAC and DNS servers.
@@ -66,7 +68,7 @@ address.dns(function (err, addrs) {
 });
 ```
 
-## License 
+## License
 
 (The MIT License)
 
