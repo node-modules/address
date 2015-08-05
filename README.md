@@ -1,13 +1,25 @@
 address
 =======
 
-[![Build Status](https://travis-ci.org/node-modules/address.svg?branch=benchmark)](https://travis-ci.org/node-modules/address)
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Gittip][gittip-image]][gittip-url]
+[![David deps][david-image]][david-url]
+[![npm download][download-image]][download-url]
 
-[![Coverage Status](https://coveralls.io/repos/node-modules/address/badge.svg?branch=benchmark&service=github)](https://coveralls.io/github/node-modules/address?branch=benchmark)
-
-[![NPM](https://nodei.co/npm/address.png?downloads=true&stars=true)](https://nodei.co/npm/address/)
-
-![logo](https://raw.github.com/fengmk2/address/master/logo.png)
+[npm-image]: https://img.shields.io/npm/v/address.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/address
+[travis-image]: https://img.shields.io/travis/node-modules/address.svg?style=flat-square
+[travis-url]: https://travis-ci.org/node-modules/address
+[coveralls-image]: https://img.shields.io/coveralls/node-modules/address.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/node-modules/address?branch=master
+[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat-square
+[gittip-url]: https://www.gittip.com/fengmk2/
+[david-image]: https://img.shields.io/david/node-modules/address.svg?style=flat-square
+[david-url]: https://david-dm.org/node-modules/address
+[download-image]: https://img.shields.io/npm/dm/address.svg?style=flat-square
+[download-url]: https://npmjs.org/package/address
 
 Get current machine IP, MAC and DNS servers.
 
@@ -85,25 +97,4 @@ run `make benchmark`
 
 ## License
 
-(The MIT License)
-
-Copyright (c) 2013 fengmk2 &lt;fengmk2@gmail.com&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[MIT](LICENSE.txt)
