@@ -17,6 +17,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "contributors": "*",
     "istanbul": "*",
     "matcha": "*",
     "mm": "*",
@@ -29,7 +30,10 @@
     "url": "git://github.com/node-modules/address.git"
   },
   "keywords": [
-    "address", "ip", "ipv4", "mac"
+    "address",
+    "ip",
+    "ipv4",
+    "mac"
   ],
   "engines": {
     "node": ">= 0.12.0"
