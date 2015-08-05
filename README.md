@@ -70,6 +70,8 @@ address.dns(function (err, addrs) {
 
 ## benchmark
 
+run `make benchmark`
+
 ```
 18,929 op/s » #ip
 17,622 op/s » #ipv6
