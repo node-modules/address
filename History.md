@@ -1,4 +1,10 @@
 
+1.0.0 / 2015-08-06
+==================
+
+ * chore: use npm scripts instead of Makefile
+ * add benchmark
+
 0.0.3 / 2013-11-04 
 ==================
 
