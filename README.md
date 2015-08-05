@@ -68,6 +68,15 @@ address.dns(function (err, addrs) {
 });
 ```
 
+## benchmark
+
+```
+18,929 op/s » #ip
+17,622 op/s » #ipv6
+16,347 op/s » #mac
+11,906 op/s » #dns
+```
+
 ## License
 
 (The MIT License)

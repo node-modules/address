@@ -26,5 +26,8 @@ test-coveralls:
 
 test-all: test test-cov
 
-.PHONY: install test test-cov test-all test-coveralls
+benchmark:
+	./node_modules/.bin/matcha
+
+.PHONY: install test test-cov test-all test-coveralls benchmark
 
