@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "make test-all",
-    "blanket": { 
+    "blanket": {
       "pattern": "address/lib",
       "data-cover-flags": {
         "debug": false
@@ -15,18 +15,17 @@
       "threshold": 95
     }
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
-    "pedding": "*",
-    "mm": "*",
-    "should": "*",
     "blanket": "*",
-    "travis-cov": "*",
     "coveralls": "*",
+    "matcha": "~0.6.0",
+    "mm": "*",
+    "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "mocha": "*"
+    "pedding": "*",
+    "should": "*",
+    "travis-cov": "*"
   },
   "repository": {
     "type": "git",
