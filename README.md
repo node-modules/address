@@ -1,5 +1,9 @@
-address [![Build Status](https://secure.travis-ci.org/fengmk2/address.png)](http://travis-ci.org/fengmk2/address) [![Coverage Status](https://coveralls.io/repos/fengmk2/address/badge.png)](https://coveralls.io/r/fengmk2/address)
+address
 =======
+
+[![Build Status](https://travis-ci.org/node-modules/address.svg?branch=benchmark)](https://travis-ci.org/node-modules/address)
+
+[![Coverage Status](https://coveralls.io/repos/node-modules/address/badge.svg?branch=benchmark&service=github)](https://coveralls.io/github/node-modules/address?branch=benchmark)
 
 [![NPM](https://nodei.co/npm/address.png?downloads=true&stars=true)](https://nodei.co/npm/address/)
 
