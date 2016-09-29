@@ -1,14 +1,4 @@
-/*!
- * address - test/address.test.js
- * Copyright(c) 2013 fengmk2 <fengmk2@gmail.com>
- * MIT Licensed
- */
-
-"use strict";
-
-/**
- * Module dependencies.
- */
+'use strict';
 
 var os = require('os');
 var child = require('child_process');
@@ -186,6 +176,26 @@ describe('address.test.js', function () {
                internal: false } ] };
       });
       address.ip().should.equal('10.206.52.79');
+    });
+
+    it('should return utun1', function () {
+      mm(os, 'networkInterfaces', function () {
+        return {
+          lo:
+           [ { address: '127.0.0.1',
+               family: 'IPv4',
+               internal: true } ],
+         utun0:
+          [ { address: 'fe80::696:ad3d:eeec:1722',
+              family: 'IPv6',
+              internal: false } ],
+          utun1:
+           [ { address: '10.206.52.79',
+               family: 'IPv4',
+               internal: false } ] };
+      });
+      address.ip('utun').should.equal('10.206.52.79');
+      address.ipv6('utun').should.equal('fe80::696:ad3d:eeec:1722');
     });
   });
 
