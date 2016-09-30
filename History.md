@@ -1,4 +1,11 @@
 
+1.0.1 / 2016-09-30
+==================
+
+  * test: remove 0.12
+  * fix: search interface before family match
+  * add contributors
+
 1.0.0 / 2015-08-06
 ==================
 
