@@ -1,22 +1,29 @@
+var Benchmark = require('benchmark');
+var benchmarks = require('beautify-benchmark');
+
+var suite = new Benchmark.Suite();
+
 var address = require('..');
+var os = require('os');
 
-suite('address', function () {
-  bench('ip()', function () {
-    address.ip();
-  });
-
-  bench('ipv6()', function () {
-    address.ipv6();
-  })
-
-  bench('mac()', function (next) {
-    // 不加 setImmediate 会报错：RangeError: Maximum call stack size exceeded
-    setImmediate(function () {
-      address.mac(next);
-    });
-  });
-
-  bench('dns()', function (next) {
-    address.dns(next);
-  });
+suite.add('os.platform()', function() {
+  os.platform();
 });
+
+suite.on('cycle', function(event) {
+  benchmarks.add(event.target);
+});
+
+suite.on('start', function(event) {
+  console.log('\n  Starting...',
+    process.version, Date());
+});
+
+suite.on('complete', function done() {
+  benchmarks.log();
+});
+
+suite.run({ 'async': false });
+
+
+// os.platform() x 67,436,816 ops/sec ±1.56% (84 runs sampled)

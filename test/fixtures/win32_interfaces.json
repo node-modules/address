@@ -1,0 +1,36 @@
+{
+  "无线网络连接": [
+    {
+      "address": "fe80::f96c:4017:300f:e9ea",
+      "netmask": "ffff:ffff:ffff:ffff::",
+      "family": "IPv6",
+      "mac": "e8:2a:ea:8b:c2:20",
+      "scopeid": 14,
+      "internal": false
+    },
+    {
+      "address": "10.15.230.231",
+      "netmask": "255.255.254.0",
+      "family": "IPv4",
+      "mac": "e8:2a:ea:8b:c2:20",
+      "internal": false
+    }
+  ],
+  "Loopback Pseudo-Interface 1": [
+    {
+      "address": "::1",
+      "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+      "family": "IPv6",
+      "mac": "00:00:00:00:00:00",
+      "scopeid": 0,
+      "internal": true
+    },
+    {
+      "address": "127.0.0.1",
+      "netmask": "255.0.0.0",
+      "family": "IPv4",
+      "mac": "00:00:00:00:00:00",
+      "internal": true
+    }
+  ]
+}
