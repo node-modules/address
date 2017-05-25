@@ -156,6 +156,24 @@ describe('address.test.js', function () {
         done();
       });
     });
+
+    it('should return mac mock win32', function (done) {
+
+      mm(os, 'platform', function () {
+        return 'win32';
+      });
+      mm(os, 'networkInterfaces', function () {
+        return require(path.join(__dirname, './fixtures/win32_interfaces.json'));
+      });
+
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.equal('e8:2a:ea:8b:c2:20');
+        done();
+      });
+    });
+
   });
 
   describe('address.ip()', function () {
