@@ -1,4 +1,10 @@
 
+1.0.3 / 2017-08-24
+==================
+
+**fixes**
+  * [[`ed491c5`](http://github.com/node-modules/address/commit/ed491c5bd353118e4e4d384f47f13c3e1cfeb80e)] - fix: ignore wrong mac address on node 8.x (#10) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.0.2 / 2017-05-26
 ==================
 
