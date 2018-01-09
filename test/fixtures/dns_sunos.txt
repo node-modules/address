@@ -1,0 +1,11 @@
+; Sample resolv.conf file for the machine polaris
+domain doc.com
+; try local name server
+nameserver 127.0.0.1
+; if local name server down, try these servers
+nameserver 123.45.6.1
+nameserver 111.22.3.5
+; sort the addresses returned by gethostbyname(3c)
+sortlist
+130.155.160.0/255.255.240.0
+130.155.0.0

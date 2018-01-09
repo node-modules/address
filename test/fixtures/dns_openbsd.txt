@@ -1,0 +1,4 @@
+search example.com
+nameserver 125.2.3.4
+nameserver 125.2.3.5
+lookup file bind

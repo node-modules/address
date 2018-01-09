@@ -37,9 +37,23 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return first ethernet addrs from osx', function (done) {
+    it('should return first ethernet addrs on aix', function (done) {
       mm(address, 'interface', function () {
-        return {address: '192.168.2.104'};
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'aix.txt'), 'utf8'));
+      address('en', function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.ip.should.equal('10.125.5.202');
+        addr.mac.should.equal('00:16:3E:00:0A:29');
+        done();
+      });
+    });
+
+    it('should return first ethernet addrs on darwin', function (done) {
+      mm(address, 'interface', function () {
+        return { address: '192.168.2.104' };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
       address('en', function (err, addr) {
@@ -52,9 +66,23 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return first ethernet addrs from linux', function (done) {
+    it('should return first ethernet addrs on freebsd', function (done) {
       mm(address, 'interface', function () {
-        return {address: '10.125.5.202'};
+        return { address: '192.168.2.104' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'freebsd.txt'), 'utf8'));
+      address('dc', function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.ip.should.equal('192.168.2.104');
+        addr.mac.should.equal('00:16:3E:00:0A:29');
+        done();
+      });
+    });
+
+    it('should return first ethernet addrs on linux', function (done) {
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
       address('eth', function (err, addr) {
@@ -67,7 +95,35 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return first vnic interface addrs from osx', function (done) {
+    it('should return first ethernet addrs on openbsd', function (done) {
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'openbsd.txt'), 'utf8'));
+      address('fxp', function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.ip.should.equal('10.125.5.202');
+        addr.mac.should.equal('00:16:3E:00:0A:29');
+        done();
+      });
+    });
+
+    it('should return first ethernet addrs on sunos', function (done) {
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'sunos.txt'), 'utf8'));
+      address('qfe', function (err, addr) {
+        should.not.exists(err);
+        addr.should.have.keys('ip', 'ipv6', 'mac');
+        addr.ip.should.equal('10.125.5.202');
+        addr.mac.should.equal('0:3:ba:17:4b:e1');
+        done();
+      });
+    });
+
+    it('should return first vnic interface addrs on darwin', function (done) {
       mm(address, 'ip', function () {
         return '10.211.55.2';
       });
@@ -82,6 +138,19 @@ describe('address.test.js', function () {
       });
     });
 
+    it('should return first vnic interface addrs on sunos', function (done) {
+      mm(address, 'ip', function () {
+        return '3.4.5.6';
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'sunos.txt'), 'utf8'));
+      address('vnic', function (err, addr) {
+        should.not.exists(err);
+        addr.ip.should.equal('3.4.5.6')
+        should.not.exists(addr.ipv6);
+        done();
+      });
+    });
+
     it('should return first local loopback addrs', function (done) {
       address('lo', function (err, addr) {
         should.not.exists(err);
@@ -91,7 +160,7 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return first local loopback addrs from linux', function (done) {
+    it('should return first local loopback addrs on linux', function (done) {
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
       address('lo', function (err, addr) {
         should.not.exists(err);
@@ -121,15 +190,114 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return mock mac address', function (done) {
+    it('should return mock mac on aix', function (done) {
+      mm(os, 'platform', function () {
+        return 'aix';
+      });
       mm(address, 'interface', function () {
-        return {address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104'};
+        return { address: '10.125.5.202' };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
-      address.mac(os.platform() === 'linux' ? 'eth' : 'en', function (err, mac) {
+      address.mac(function (err, mac) {
         should.not.exists(err);
         should.exists(mac);
         mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on darwin', function (done) {
+      mm(os, 'platform', function () {
+        return 'darwin';
+      });
+      mm(address, 'interface', function () {
+        return { address: '192.168.2.104' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on freebsd', function (done) {
+      mm(os, 'platform', function () {
+        return 'freebsd';
+      });
+      mm(address, 'interface', function () {
+        return { address: '192.168.2.104' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on linux', function (done) {
+      mm(os, 'platform', function () {
+        return 'linux';
+      });
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on openbsd', function (done) {
+      mm(os, 'platform', function () {
+        return 'openbsd';
+      });
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on sunos', function (done) {
+      mm(os, 'platform', function () {
+        return 'sunos';
+      });
+      mm(address, 'interface', function () {
+        return { address: '10.125.5.202' };
+      });
+      mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.match(/(?:[a-z0-9]{1,2}\:){5}[a-z0-9]{2}/i);
+        done();
+      });
+    });
+
+    it('should return mock mac on win32', function (done) {
+      mm(os, 'platform', function () {
+        return 'win32';
+      });
+      mm(os, 'networkInterfaces', function () {
+        return require(path.join(__dirname, './fixtures/win32_interfaces.json'));
+      });
+
+      address.mac(function (err, mac) {
+        should.not.exists(err);
+        should.exists(mac);
+        mac.should.equal('e8:2a:ea:8b:c2:20');
         done();
       });
     });
@@ -156,24 +324,6 @@ describe('address.test.js', function () {
         done();
       });
     });
-
-    it('should return mac mock win32', function (done) {
-
-      mm(os, 'platform', function () {
-        return 'win32';
-      });
-      mm(os, 'networkInterfaces', function () {
-        return require(path.join(__dirname, './fixtures/win32_interfaces.json'));
-      });
-
-      address.mac(function (err, mac) {
-        should.not.exists(err);
-        should.exists(mac);
-        mac.should.equal('e8:2a:ea:8b:c2:20');
-        done();
-      });
-    });
-
   });
 
   describe('address.ip()', function () {
@@ -218,7 +368,18 @@ describe('address.test.js', function () {
   });
 
   describe('address.dns()', function () {
-    it('should return dns servers from osx', function (done) {
+    it('should return dns servers on aix', function (done) {
+      mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_aix.txt'), 'utf8'));
+      address.dns(function (err, servers) {
+        should.not.exists(err);
+        should.exists(servers);
+        servers.should.be.instanceof(Array);
+        servers.length.should.above(0);
+        done();
+      });
+    });
+
+    it('should return dns servers on darwin', function (done) {
       mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_darwin.txt'), 'utf8'));
       address.dns(function (err, servers) {
         should.not.exists(err);
@@ -229,8 +390,41 @@ describe('address.test.js', function () {
       });
     });
 
-    it('should return dns servers from linux', function (done) {
+    it('should return dns servers on freebsd', function (done) {
+      mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_freebsd.txt'), 'utf8'));
+      address.dns(function (err, servers) {
+        should.not.exists(err);
+        should.exists(servers);
+        servers.should.be.instanceof(Array);
+        servers.length.should.above(0);
+        done();
+      });
+    });
+
+    it('should return dns servers on linux', function (done) {
       mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_linux.txt'), 'utf8'));
+      address.dns(function (err, servers) {
+        should.not.exists(err);
+        should.exists(servers);
+        servers.should.be.instanceof(Array);
+        servers.length.should.above(0);
+        done();
+      });
+    });
+
+    it('should return dns servers on openbsd', function (done) {
+      mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_openbsd.txt'), 'utf8'));
+      address.dns(function (err, servers) {
+        should.not.exists(err);
+        should.exists(servers);
+        servers.should.be.instanceof(Array);
+        servers.length.should.above(0);
+        done();
+      });
+    });
+
+    it('should return dns servers on sunos', function (done) {
+      mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_sunos.txt'), 'utf8'));
       address.dns(function (err, servers) {
         should.not.exists(err);
         should.exists(servers);

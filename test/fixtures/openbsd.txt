@@ -1,0 +1,17 @@
+lo0:    flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 33200
+        index 3 priority 0 llprio 3
+        groups: lo
+        inet 127.0.0.1 netmask 0xff000000
+fxp0:   flags=8843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+        lladdr 00:16:3E:00:0A:29
+        index 1 priority 0 llprio 3
+        media: Ethernet autoselect (100baseTX full-duplex)
+        status: active
+        inet 10.125.5.202 netmask 0xffffff00 broadcast 10.125.15.255
+enc0:   flags=0<>
+        index 2 priority 0 llprio 3
+        groups: enc
+        status: active
+pflog0: flags=141<UP,RUNNING,PROMISC> mtu 33200
+        index 4 priority 0 llprio 3
+        groups: pflog
