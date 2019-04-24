@@ -1,4 +1,10 @@
 
+1.1.0 / 2019-04-24
+==================
+
+**features**
+  * [[`7544592`](http://github.com/node-modules/address/commit/75445923a6f737fc21e3cf592f749bf014b7b4ce)] - feat: Add typings (#15) (Mathieu TUDISCO <<oss@mathieutu.dev>>)
+
 1.0.3 / 2017-08-24
 ==================
 
