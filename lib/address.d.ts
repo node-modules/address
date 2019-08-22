@@ -1,16 +1,23 @@
-namespace address {
-  function ip(interfaceName?: string): string
+export = address;
 
-  function ipv6(interfaceName?: string): string 
-
-  function mac(callback: (err: Error, addr: string) => void): void
-  function mac(interfaceName: string, callback: (err: Error, addr: string) => void): void
-  
-  function dns(callback: (err: Error, servers: string[]) => void): void
-  function dns(filePath: string, callback: (err: Error, servers: string[]) => void): void
+declare interface Address {
+  p: string;
+  ipv6: string;
+  mac: string;
 }
 
-function address(callback: (err: Error, addr: { ip: string, ipv6: string, mac: string }) => void): void
-function address(interfaceName: string, callback: (err: Error, addr: { ip: string, ipv6: string, mac: string }) => void): void
+declare type AddressCallback = (err: Error, addr: Address) => void;
+declare type MacCallback = (err: Error, addr: string) => void;
+declare type DnsCallback = (err: Error, servers: string[]) => void;
 
-export = address
+declare function address(interfaceName: string | AddressCallback, callback?: AddressCallback): void;
+
+declare namespace address {
+  const MAC_IP_RE: RegExp;
+  const MAC_RE: RegExp;
+
+  function dns(filepath: string | DnsCallback, callback?: DnsCallback): void;
+  function ip(interfaceName?: string): any;
+  function ipv6(interfaceName?: string): any;
+  function mac(interfaceName: string | MacCallback, callback?: MacCallback): void;
+}
