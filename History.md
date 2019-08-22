@@ -1,4 +1,10 @@
 
+1.1.1 / 2019-08-22
+==================
+
+**fixes**
+  * [[`19884ff`](http://github.com/node-modules/address/commit/19884ffbe9ad75f9a66889a031db4b806da1f822)] - fix: update d.ts (#18) (MarioDu <<dujiakun@gmail.com>>)
+
 1.1.0 / 2019-04-24
 ==================
 
