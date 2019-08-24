@@ -1,0 +1,7 @@
+qfe1: flags=1100843<UP,BROADCAST,RUNNING,MULTICAST,ROUTER,IPv4> mtu
+      1500 index 3
+      inet 10.125.5.202 netmask ffffff00 broadcast 10.125.15.255
+      ether 0:3:ba:17:4b:e1
+vni0: flags=20011100c1<UP,RUNNING,NOARP,NOXMIT,ROUTER,IPv4,VIRTUAL>
+      mtu 0 index 5
+      inet 3.4.5.6 netmask ffffffff

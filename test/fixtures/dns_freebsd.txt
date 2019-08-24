@@ -1,0 +1,3 @@
+search example.com
+nameserver 147.11.1.11
+nameserver 147.11.100.30
