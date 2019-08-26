@@ -1,6 +1,13 @@
 import assert = require('assert');
 import * as address from 'address';
 import * as os from 'os';
+import * as mm from 'mm';
+import * as path from 'path';
+import * as child from 'child_process';
+import * as fs from 'fs';
+
+mm(address, 'interface', () => ({ address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104' }));
+mm.data(child, 'exec', fs.readFileSync(path.join(__dirname, `../${os.platform() + '.txt'}`), 'utf8'));
 
 address.dns((err, servers) => {
   assert(!err);
@@ -25,7 +32,7 @@ address.mac((err, mac) => {
   assert(mac.substring(0));
 });
 
-const interfaceName = os.platform() === 'darwin' ? 'en' : 'eth';
+const interfaceName = (os.platform() === 'darwin') ? 'en' : 'eth';
 address.mac(interfaceName, (err, mac) => {
   assert(!err);
   assert(mac);
