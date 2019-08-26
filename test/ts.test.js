@@ -7,7 +7,6 @@ describe('test/ts.test.js', () => {
     const cwd = path.resolve(__dirname, './fixtures/ts');
     const tsconfigPath = path.resolve(cwd, 'tsconfig.json');
     const testFile = path.resolve(cwd, 'test');
-    const { stderr } = await runscript(`tsc -p ${tsconfigPath} && node ${testFile}`, { stdio: 'pipe' });
-    assert(!stderr);
+    await runscript(`tsc -p ${tsconfigPath} && node ${testFile}`, { stdio: 'inherit' });
   });
 });
