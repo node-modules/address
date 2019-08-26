@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "baseUrl": ".",
+    "paths": {
+      "address": [
+        "../../.."
+      ]
+    },
+    "module": "commonjs",
+    "strict": true,
+    "noImplicitAny": false
+  }
+}

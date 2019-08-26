@@ -17,15 +17,18 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^12.7.2",
+    "beautify-benchmark": "*",
+    "benchmark": "*",
     "contributors": "*",
     "istanbul": "*",
     "matcha": "*",
     "mm": "*",
     "mocha": "*",
     "pedding": "*",
+    "runscript": "^1.4.0",
     "should": "*",
-    "benchmark": "*",
-    "beautify-benchmark": "*"
+    "typescript": "^3.5.3"
   },
   "repository": {
     "type": "git",
