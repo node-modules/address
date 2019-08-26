@@ -1,4 +1,10 @@
 
+1.1.2 / 2019-08-26
+==================
+
+**fixes**
+  * [[`304754e`](http://github.com/node-modules/address/commit/304754ea4ef0dd34db7ba34745f4f4543afc064c)] - fix: fix declarations (#20) (吖猩 <<whxaxes@qq.com>>)
+
 1.1.1 / 2019-08-22
 ==================
 
