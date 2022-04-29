@@ -36,7 +36,7 @@
     "node": ">= 10.0.0"
   },
   "ci": {
-    "version": "10, 12, 14, 16, 18",
+    "version": "12, 14, 16, 18",
     "type": "github"
   },
   "author": "fengmk2 <fengmk2@gmail.com>",
