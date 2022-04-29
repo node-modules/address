@@ -2,6 +2,7 @@ address
 =======
 
 [![NPM version][npm-image]][npm-url]
+[![Node.js CI](https://github.com/node-modules/address/actions/workflows/nodejs.yml/badge.svg)](https://github.com/node-modules/address/actions/workflows/nodejs.yml)
 [![Test coverage][coveralls-image]][coveralls-url]
 [![npm download][download-image]][download-url]
 
