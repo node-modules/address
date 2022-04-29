@@ -8,26 +8,18 @@
     "lib"
   ],
   "scripts": {
-    "test": "mocha --check-leaks -R spec -t 5000 test/*.test.js",
-    "test-cov": "istanbul cover node_modules/.bin/_mocha -- --check-leaks -t 5000 test/*.test.js",
-    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --check-leaks -t 5000 test/*.test.js",
-    "benchmark": "matcha",
-    "autod": "autod -w --prefix '^'",
+    "test": "egg-bin test",
+    "ci": "egg-bin cov",
     "contributors": "git-contributor"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.7.2",
-    "beautify-benchmark": "*",
-    "benchmark": "*",
+    "egg-bin": "^4.19.0",
+    "egg-ci": "^1.19.0",
     "git-contributor": "^1.1.0",
-    "istanbul": "*",
-    "matcha": "*",
     "mm": "*",
-    "mocha": "*",
-    "pedding": "*",
     "runscript": "^1.4.0",
-    "should": "*",
     "typescript": "^3.5.3"
   },
   "repository": {
@@ -42,6 +34,10 @@
   ],
   "engines": {
     "node": ">= 10.0.0"
+  },
+  "ci": {
+    "version": "10, 12, 14, 16, 18",
+    "type": "github"
   },
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT"
