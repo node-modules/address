@@ -37,7 +37,10 @@
   },
   "ci": {
     "version": "12, 14, 16, 18",
-    "type": "github"
+    "type": "github",
+    "os": {
+      "github": "linux, macos"
+    }
   },
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT"
