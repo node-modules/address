@@ -1,6 +1,6 @@
 {
   "name": "address",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Get current machine IP, MAC and DNS servers.",
   "main": "lib/address.js",
   "types": "lib/address.d.ts",
@@ -13,14 +13,14 @@
     "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --check-leaks -t 5000 test/*.test.js",
     "benchmark": "matcha",
     "autod": "autod -w --prefix '^'",
-    "contributors": "contributors -f plain -o AUTHORS"
+    "contributors": "git-contributor"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.7.2",
     "beautify-benchmark": "*",
     "benchmark": "*",
-    "contributors": "*",
+    "git-contributor": "^1.1.0",
     "istanbul": "*",
     "matcha": "*",
     "mm": "*",
@@ -41,7 +41,7 @@
     "mac"
   ],
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 10.0.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT"

@@ -1,4 +1,10 @@
 
+1.2.0 / 2022-04-29
+==================
+
+**features**
+  * [[`fe81a41`](http://github.com/node-modules/address/commit/fe81a415403ba46d7bc09d76a2f9fc46bc2fc803)] - feat: address.ip() supports node 18 (#26) (Yuheng Zhang <<zhangyuheng91@gmail.com>>)
+
 1.1.2 / 2019-08-26
 ==================
 
