@@ -1,4 +1,14 @@
 
+1.2.1 / 2022-09-13
+==================
+
+**fixes**
+  * [[`c316a04`](http://github.com/node-modules/address/commit/c316a044aedeadf438c2c2a7278d51f0861df8af)] - fix: local addresses should be ignored on interface (#32) (Jon Kelley <<jkelleyrtp@gmail.com>>)
+
+**others**
+  * [[`823b70c`](http://github.com/node-modules/address/commit/823b70c2f53ab96d6e25041aa444436d906c59ef)] - 🤖 TEST: Run test on GitHub action (#27) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`2b5fb44`](http://github.com/node-modules/address/commit/2b5fb44ca1ff1a0d64768e8d42845ec377b9e3f8)] - Create codeql-analysis.yml (fengmk2 <<fengmk2@gmail.com>>)
+
 1.2.0 / 2022-04-29
 ==================
 
