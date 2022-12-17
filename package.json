@@ -8,6 +8,7 @@
     "lib"
   ],
   "scripts": {
+    "lint": "eslint test",
     "test": "egg-bin test",
     "ci": "egg-bin cov",
     "contributors": "git-contributor"
@@ -16,6 +17,8 @@
   "devDependencies": {
     "@types/node": "14",
     "egg-bin": "^5.6.1",
+    "eslint": "^8.30.0",
+    "eslint-config-egg": "^12.1.0",
     "git-contributor": "^1.1.0",
     "mm": "*",
     "runscript": "^1.4.0",

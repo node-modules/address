@@ -72,7 +72,7 @@ describe('test/address.test.js', () => {
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
       address('vnic', (err, addr) => {
         assert(!err);
-        assert.strictEqual(addr.ip, '10.211.55.2')
+        assert.strictEqual(addr.ip, '10.211.55.2');
         assert(!addr.ipv6);
         done();
       });
@@ -180,13 +180,13 @@ describe('test/address.test.js', () => {
       mm(os, 'networkInterfaces', () => {
         return {
           lo:
-           [ { address: '127.0.0.1',
-               family: 'IPv4',
-               internal: true } ],
+           [{ address: '127.0.0.1',
+             family: 'IPv4',
+             internal: true }],
           bond0:
-           [ { address: '10.206.52.79',
-               family: 'IPv4',
-               internal: false } ] };
+           [{ address: '10.206.52.79',
+             family: 'IPv4',
+             internal: false }] };
       });
       assert.strictEqual(address.ip(), '10.206.52.79');
     });
@@ -195,17 +195,17 @@ describe('test/address.test.js', () => {
       mm(os, 'networkInterfaces', () => {
         return {
           lo:
-           [ { address: '127.0.0.1',
-               family: 'IPv4',
-               internal: true } ],
-         utun0:
-          [ { address: 'fe80::696:ad3d:eeec:1722',
-              family: 'IPv6',
-              internal: false } ],
+           [{ address: '127.0.0.1',
+             family: 'IPv4',
+             internal: true }],
+          utun0:
+          [{ address: 'fe80::696:ad3d:eeec:1722',
+            family: 'IPv6',
+            internal: false }],
           utun1:
-           [ { address: '10.206.52.79',
-               family: 'IPv4',
-               internal: false } ] };
+           [{ address: '10.206.52.79',
+             family: 'IPv4',
+             internal: false }] };
       });
       assert.strictEqual(address.ip('utun'), '10.206.52.79');
       assert.strictEqual(address.ipv6('utun'), 'fe80::696:ad3d:eeec:1722');
