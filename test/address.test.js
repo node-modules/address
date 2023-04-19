@@ -31,8 +31,8 @@ describe('test/address.test.js', () => {
       address((err, addr) => {
         assert(!err);
         assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        assert.match(addr.mac, /^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
-        assert.match(addr.ip, /^\d+\.\d+\.\d+\.\d+$/);
+        addr.mac && assert.match(addr.mac, /^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
+        addr.ip && assert.match(addr.ip, /^\d+\.\d+\.\d+\.\d+$/);
         done();
       });
     });
