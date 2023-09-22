@@ -139,6 +139,9 @@ describe('test/address.test.ts', () => {
           en1: [
             { address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104', family: 'IPv4' },
           ],
+          eth1: [
+            { address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104', family: 'IPv4' },
+          ],
         };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
