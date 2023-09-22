@@ -124,7 +124,7 @@ describe('test/address.test.ts', () => {
   });
 
   describe('address.mac()', () => {
-    it.skip('should return mac', done => {
+    it('should return mac', done => {
       addressAll.mac((err, mac) => {
         assert(!err);
         assert(mac);
