@@ -4,8 +4,9 @@
   "description": "Get current machine IP, MAC and DNS servers.",
   "scripts": {
     "lint": "eslint src test --ext .ts",
-    "pretest": "npm run lint -- --fix",
+    "pretest": "npm run lint -- --fix && npm run prepublishOnly",
     "test": "egg-bin test",
+    "preci": "npm run prepublishOnly",
     "ci": "egg-bin cov",
     "contributors": "git-contributor",
     "prepublishOnly": "tshy && tshy-after"
