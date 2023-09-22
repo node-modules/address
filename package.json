@@ -8,7 +8,7 @@
     "test": "egg-bin test",
     "preci": "npm run prepublishOnly",
     "ci": "egg-bin cov",
-    "contributors": "git-contributor",
+    "contributor": "git-contributor",
     "prepublishOnly": "tshy && tshy-after"
   },
   "devDependencies": {
