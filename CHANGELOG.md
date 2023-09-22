@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://github.com/node-modules/address/compare/v1.2.2...v2.0.0) (2023-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop Node.js < 16 support
+
+- rename `interface()` to `getInterfaceAddress()`
+
+### Features
+
+* refactor with typescript to support cjs and esm both ([#37](https://github.com/node-modules/address/issues/37)) ([8981f21](https://github.com/node-modules/address/commit/8981f214084326c55b053c76182acd741262c057))
+
 ## [1.2.2](https://github.com/node-modules/address/compare/v1.2.1...v1.2.2) (2022-12-17)
 
 
