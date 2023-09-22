@@ -17,3 +17,5 @@ npm-debug.log
 
 .idea/
 test/fixtures/ts/*.js
+.tshy*
+dist/

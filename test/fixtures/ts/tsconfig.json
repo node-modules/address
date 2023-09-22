@@ -1,4 +1,5 @@
 {
+  "extends": "@eggjs/tsconfig",
   "compilerOptions": {
     "target": "es5",
     "baseUrl": ".",
@@ -9,6 +10,7 @@
     },
     "module": "commonjs",
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "declaration": false
   }
 }
