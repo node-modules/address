@@ -20,7 +20,7 @@ DNS servers receive from `/etc/resolv.conf`.
 ## Install
 
 ```bash
-$ npm install address
+$ npm install address@1
 ```
 
 ## Usage
