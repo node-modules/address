@@ -1,6 +1,6 @@
 {
   "name": "address",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Get current machine IP, MAC and DNS servers.",
   "scripts": {
     "lint": "eslint src test --ext .ts",
