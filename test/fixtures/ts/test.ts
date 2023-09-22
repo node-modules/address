@@ -1,10 +1,10 @@
-import assert = require('assert');
+import assert from 'node:assert';
+import os from 'node:os';
+import mm from 'mm';
+import path from 'node:path';
+import child from 'node:child_process';
+import fs from 'node:fs';
 import * as address from 'address';
-import * as os from 'os';
-import * as mm from 'mm';
-import * as path from 'path';
-import * as child from 'child_process';
-import * as fs from 'fs';
 
 mm(address, 'interface', () => ({ address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104' }));
 mm.data(child, 'exec', fs.readFileSync(path.join(__dirname, `../${os.platform() + '.txt'}`), 'utf8'));
@@ -39,7 +39,7 @@ address.mac(interfaceName, (err, mac) => {
   assert(mac.substring(0));
 });
 
-address(interfaceName, (err, addr) => {
+address.address(interfaceName, (err, addr) => {
   assert(!err);
   assert(addr.ip);
   assert(addr.ip.substring(0));
@@ -49,7 +49,7 @@ address(interfaceName, (err, addr) => {
   assert(addr.mac.substring(0));
 });
 
-address((err, addr) => {
+address.address((err, addr) => {
   assert(!err);
   assert(addr.ip);
   assert(addr.ip.substring(0));

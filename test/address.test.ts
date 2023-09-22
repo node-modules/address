@@ -1,98 +1,112 @@
-'use strict';
+import { strict as assert } from 'node:assert';
+import os from 'node:os';
+import child from 'node:child_process';
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import mm from 'mm';
+import * as addressAll from '../src/index.js';
+import address from '../src/index.js';
 
-const assert = require('assert');
-const os = require('os');
-const child = require('child_process');
-const path = require('path');
-const mm = require('mm');
-const fs = require('fs');
-const address = require('..');
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const fixtures = path.join(__dirname, 'fixtures');
 
-describe('test/address.test.js', () => {
+describe('test/address.test.ts', () => {
   beforeEach(mm.restore);
   afterEach(mm.restore);
 
   describe('regex check', () => {
     it('should MAC_IP_RE pass', () => {
-      assert(address.MAC_IP_RE.test('  inet 10.7.84.211 netmask 0xfffffc00 broadcast 10.7.87.255'));
-      assert(address.MAC_IP_RE.test('          inet addr:10.125.5.202  Bcast:10.125.15.255  Mask:255.255.240.0'));
+      assert(addressAll.MAC_IP_RE.test('  inet 10.7.84.211 netmask 0xfffffc00 broadcast 10.7.87.255'));
+      assert(addressAll.MAC_IP_RE.test('          inet addr:10.125.5.202  Bcast:10.125.15.255  Mask:255.255.240.0'));
     });
 
     it('should MAC_RE pass', () => {
-      assert(address.MAC_RE.test('    ether c4:2c:03:32:d5:3d '));
-      assert(address.MAC_RE.test('eth0      Link encap:Ethernet  HWaddr 00:16:3E:00:0A:29  '));
+      assert(addressAll.MAC_RE.test('    ether c4:2c:03:32:d5:3d '));
+      assert(addressAll.MAC_RE.test('eth0      Link encap:Ethernet  HWaddr 00:16:3E:00:0A:29  '));
     });
   });
 
   describe('address()', () => {
-    it('should return first ethernet addrs', done => {
+    it('should return first ethernet addresses', done => {
       address((err, addr) => {
         assert(!err);
-        assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
+        assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
         addr.mac && assert.match(addr.mac, /^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
         addr.ip && assert.match(addr.ip, /^\d+\.\d+\.\d+\.\d+$/);
         done();
       });
     });
 
-    it('should return first ethernet addrs from osx', done => {
-      mm(address, 'interface', () => {
-        return { address: '192.168.2.104' };
+    it('should return first ethernet addresses from osx', done => {
+      mm(os, 'networkInterfaces', () => {
+        return {
+          en1: [
+            { address: '192.168.2.104', family: 'IPv4' },
+          ],
+        };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
       address('en', (err, addr) => {
         assert(!err);
-        assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        assert.strictEqual(addr.ip, '192.168.2.104');
-        assert.strictEqual(addr.mac, '78:ca:39:b0:e6:7d');
+        assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
+        assert.equal(addr.ip, '192.168.2.104');
+        assert.equal(addr.mac, '78:ca:39:b0:e6:7d');
         done();
       });
     });
 
-    it('should return first ethernet addrs from linux', done => {
-      mm(address, 'interface', () => {
-        return { address: '10.125.5.202' };
+    it('should return first ethernet addresses from linux', done => {
+      mm(os, 'networkInterfaces', () => {
+        return {
+          eth: [
+            { address: '10.125.5.202', family: 'IPv4' },
+          ],
+        };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
       address('eth', (err, addr) => {
         assert(!err);
-        assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        assert.strictEqual(addr.ip, '10.125.5.202');
-        assert.strictEqual(addr.mac, '00:16:3E:00:0A:29');
+        assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
+        assert.equal(addr.ip, '10.125.5.202');
+        assert.equal(addr.mac, '00:16:3E:00:0A:29');
         done();
       });
     });
 
-    it('should return first vnic interface addrs from osx', done => {
-      mm(address, 'ip', () => {
-        return '10.211.55.2';
+    it('should return first vnic interface addresses from osx', done => {
+      mm(os, 'networkInterfaces', () => {
+        return {
+          vnic: [
+            { address: '10.211.55.2', family: 'IPv4' },
+          ],
+        };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'darwin.txt'), 'utf8'));
       address('vnic', (err, addr) => {
         assert(!err);
-        assert.strictEqual(addr.ip, '10.211.55.2');
+        assert.equal(addr.ip, '10.211.55.2');
         assert(!addr.ipv6);
         done();
       });
     });
 
-    it('should return first local loopback addrs', done => {
+    it('should return first local loopback addresses', done => {
       address('lo', (err, addr) => {
         assert(!err);
-        assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        assert.strictEqual(addr.ip, '127.0.0.1');
+        assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
+        assert.equal(addr.ip, '127.0.0.1');
         done();
       });
     });
 
-    it('should return first local loopback addrs from linux', done => {
+    it('should return first local loopback addresses from linux', done => {
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, 'linux.txt'), 'utf8'));
       address('lo', (err, addr) => {
         assert(!err);
-        assert.deepStrictEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        assert.strictEqual(addr.ip, '127.0.0.1');
+        assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
+        assert.equal(addr.ip, '127.0.0.1');
         done();
       });
     });
@@ -100,7 +114,9 @@ describe('test/address.test.js', () => {
 
   describe('interface()', () => {
     it('should return interface with family', () => {
-      const item = address.interface();
+      // interface rename to getInterfaceAddress
+      // const item = addressAll.interface();
+      const item = addressAll.getInterfaceAddress();
       assert(item);
       assert(item.address);
       assert(item.family);
@@ -109,7 +125,7 @@ describe('test/address.test.js', () => {
 
   describe('address.mac()', () => {
     it.skip('should return mac', done => {
-      address.mac((err, mac) => {
+      addressAll.mac((err, mac) => {
         assert(!err);
         assert(mac);
         assert.match(mac, /(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
@@ -118,11 +134,15 @@ describe('test/address.test.js', () => {
     });
 
     it('should return mock mac address', done => {
-      mm(address, 'interface', () => {
-        return { address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104' };
+      mm(os, 'networkInterfaces', () => {
+        return {
+          en1: [
+            { address: os.platform() === 'linux' ? '10.125.5.202' : '192.168.2.104', family: 'IPv4' },
+          ],
+        };
       });
       mm.data(child, 'exec', fs.readFileSync(path.join(fixtures, os.platform() + '.txt'), 'utf8'));
-      address.mac(os.platform() === 'linux' ? 'eth' : 'en', (err, mac) => {
+      addressAll.mac(os.platform() === 'linux' ? 'eth' : 'en', (err, mac) => {
         assert(!err);
         assert(mac);
         assert.match(mac, /(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
@@ -131,10 +151,10 @@ describe('test/address.test.js', () => {
     });
 
     it('should return null when ip not exists', done => {
-      mm(address, 'interface', () => {
-        return null;
+      mm(os, 'networkInterfaces', () => {
+        return {};
       });
-      address.mac((err, mac) => {
+      addressAll.mac((err, mac) => {
         assert(!err);
         assert(!mac);
         done();
@@ -142,11 +162,11 @@ describe('test/address.test.js', () => {
     });
 
     it('should return err when ifconfig cmd exec error', done => {
-      mm(address, 'interface', () => {
-        return null;
+      mm(os, 'networkInterfaces', () => {
+        return {};
       });
       mm.error(child, 'exec');
-      address.mac((err, mac) => {
+      addressAll.mac((err, mac) => {
         assert(!err);
         assert(!mac);
         done();
@@ -158,22 +178,21 @@ describe('test/address.test.js', () => {
         return 'win32';
       });
       mm(os, 'networkInterfaces', () => {
-        return require(path.join(__dirname, './fixtures/win32_interfaces.json'));
+        return JSON.parse(fs.readFileSync(path.join(__dirname, './fixtures/win32_interfaces.json'), 'utf-8'));
       });
 
-      address.mac((err, mac) => {
+      addressAll.mac((err, mac) => {
         assert(!err);
         assert(mac);
-        assert.strictEqual(mac, 'e8:2a:ea:8b:c2:20');
+        assert.equal(mac, 'e8:2a:ea:8b:c2:20');
         done();
       });
     });
-
   });
 
   describe('address.ip()', () => {
     it('should return 127.0.0.1', () => {
-      assert.strictEqual(address.ip('lo'), '127.0.0.1');
+      assert.equal(addressAll.ip('lo'), '127.0.0.1');
     });
 
     it('should return the first not 127.0.0.1 interface', () => {
@@ -188,7 +207,7 @@ describe('test/address.test.js', () => {
              family: 'IPv4',
              internal: false }] };
       });
-      assert.strictEqual(address.ip(), '10.206.52.79');
+      assert.equal(addressAll.ip(), '10.206.52.79');
     });
 
     it('should return utun1', () => {
@@ -207,15 +226,15 @@ describe('test/address.test.js', () => {
              family: 'IPv4',
              internal: false }] };
       });
-      assert.strictEqual(address.ip('utun'), '10.206.52.79');
-      assert.strictEqual(address.ipv6('utun'), 'fe80::696:ad3d:eeec:1722');
+      assert.equal(addressAll.ip('utun'), '10.206.52.79');
+      assert.equal(addressAll.ipv6('utun'), 'fe80::696:ad3d:eeec:1722');
     });
   });
 
   describe('address.dns()', () => {
     it('should return dns servers from osx', done => {
       mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_darwin.txt'), 'utf8'));
-      address.dns((err, servers) => {
+      addressAll.dns((err, servers) => {
         assert(!err);
         assert(servers);
         assert(Array.isArray(servers));
@@ -226,7 +245,7 @@ describe('test/address.test.js', () => {
 
     it('should return dns servers from linux', done => {
       mm.data(fs, 'readFile', fs.readFileSync(path.join(fixtures, 'dns_linux.txt'), 'utf8'));
-      address.dns((err, servers) => {
+      addressAll.dns((err, servers) => {
         assert(!err);
         assert(servers);
         assert(Array.isArray(servers));
@@ -237,7 +256,7 @@ describe('test/address.test.js', () => {
 
     it('should return err when fs error', done => {
       mm.error(fs, 'readFile');
-      address.dns((err, servers) => {
+      addressAll.dns((err, servers) => {
         assert(err);
         assert(!servers);
         done();
