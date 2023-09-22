@@ -2,10 +2,6 @@
   "name": "address",
   "version": "1.2.2",
   "description": "Get current machine IP, MAC and DNS servers.",
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
     "lint": "eslint src test --ext .ts",
     "pretest": "npm run lint -- --fix",
@@ -43,6 +39,10 @@
   },
   "author": "fengmk2 <fengmk2@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
   "type": "module",
   "tshy": {
     "exports": {
