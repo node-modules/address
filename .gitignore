@@ -19,3 +19,4 @@ npm-debug.log
 test/fixtures/ts/*.js
 .tshy*
 dist/
+package-lock.json
