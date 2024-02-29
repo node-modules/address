@@ -75,5 +75,6 @@
       }
     }
   },
-  "types": "./dist/commonjs/index.d.ts"
+  "types": "./dist/commonjs/index.d.ts",
+  "main": "./dist/commonjs/index.js"
 }

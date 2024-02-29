@@ -232,6 +232,37 @@ describe('test/address.test.ts', () => {
       assert.equal(addressAll.ip('utun'), '10.206.52.79');
       assert.equal(addressAll.ipv6('utun'), 'fe80::696:ad3d:eeec:1722');
     });
+
+    it('should return scopeid = 0 address', () => {
+      mm(os, 'networkInterfaces', () => {
+        return {
+          lo:
+           [{ address: '127.0.0.1',
+             family: 'IPv4',
+             internal: true }],
+          utun0:
+          [
+            {
+              address: 'fe80::696:ad3d:eeec:1722',
+              family: 'IPv6',
+              internal: false,
+              scopeid: 20,
+            },
+            {
+              address: 'fe80::696:ad3d:eeee:ffff:1:1000:3380:b81a:2dd4:373e:1234',
+              family: 'IPv6',
+              internal: false,
+              scopeid: 0,
+            },
+          ],
+          utun1:
+           [{ address: '10.206.52.79',
+             family: 'IPv4',
+             internal: false }] };
+      });
+      assert.equal(addressAll.ip('utun'), '10.206.52.79');
+      assert.equal(addressAll.ipv6('utun'), 'fe80::696:ad3d:eeee:ffff:1:1000:3380:b81a:2dd4:373e:1234');
+    });
   });
 
   describe('address.dns()', () => {

@@ -58,6 +58,28 @@ function matchName(actualFamily: string | number, expectedFamily: string | numbe
   return actualFamily === expectedFamily;
 }
 
+function findAddressFromInterface(items: os.NetworkInterfaceInfo[], expectedFamily: string | number,
+  ignoreLoAddress = false) {
+  let firstMatchItem;
+  for (const item of items) {
+    if (matchName(item.family, expectedFamily)) {
+      if (ignoreLoAddress && item.address.startsWith('127.')) {
+        continue;
+      }
+      if (expectedFamily === 'IPv6') {
+        // find the scopeid = 0 item
+        if (item.scopeid === 0) return item;
+        if (!firstMatchItem) {
+          firstMatchItem = item;
+        }
+      } else {
+        return item;
+      }
+    }
+  }
+  return firstMatchItem;
+}
+
 export function getInterfaceAddress(family?: string, name?: string) {
   const interfaces = os.networkInterfaces();
   const noName = !name;
@@ -68,10 +90,9 @@ export function getInterfaceAddress(family?: string, name?: string) {
       const interfaceName = name + (i >= 0 ? i : ''); // support 'lo' and 'lo0'
       const items = interfaces[interfaceName];
       if (items) {
-        for (const item of items) {
-          if (matchName(item.family, family)) {
-            return item;
-          }
+        const item = findAddressFromInterface(items, family);
+        if (item) {
+          return item;
         }
       }
     }
@@ -82,11 +103,10 @@ export function getInterfaceAddress(family?: string, name?: string) {
     for (const k in interfaces) {
       const items = interfaces[k];
       if (items) {
-        for (const item of items) {
-          // all 127 addresses are local and should be ignored
-          if (matchName(item.family, family) && !item.address.startsWith('127.')) {
-            return item;
-          }
+        // all 127 addresses are local and should be ignored
+        const item = findAddressFromInterface(items, family, true);
+        if (item) {
+          return item;
         }
       }
     }
