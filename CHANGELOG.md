@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/node-modules/address/compare/v2.0.1...v2.0.2) (2024-02-29)
+
+
+### Bug Fixes
+
+* should return scopeid = 0 address on IPv6 ([#41](https://github.com/node-modules/address/issues/41)) ([6c98053](https://github.com/node-modules/address/commit/6c98053fe3d3aebcf4ebb29dd2f04f06a3f7a961))
+
 ## [2.0.0](https://github.com/node-modules/address/compare/v1.2.2...v2.0.0) (2023-09-22)
 
 
