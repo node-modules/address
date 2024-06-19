@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/node-modules/address/compare/v2.0.2...v2.0.3) (2024-06-19)
+
+
+### Bug Fixes
+
+* use @arethetypeswrong/cli to auto add source exports ([#43](https://github.com/node-modules/address/issues/43)) ([9ded1af](https://github.com/node-modules/address/commit/9ded1af5b00056fa470becb011910004b8bc71e6)), closes [/github.com/eggjs/egg/issues/5257#issuecomment-2176524639](https://github.com/node-modules//github.com/eggjs/egg/issues/5257/issues/issuecomment-2176524639)
+
 ## [2.0.2](https://github.com/node-modules/address/compare/v2.0.1...v2.0.2) (2024-02-29)
 
 
