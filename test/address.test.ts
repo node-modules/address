@@ -33,7 +33,7 @@ describe('test/address.test.ts', () => {
       address((err, addr) => {
         assert(!err);
         assert.deepEqual(Object.keys(addr), [ 'ip', 'ipv6', 'mac' ]);
-        addr.mac && assert.match(addr.mac, /^(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}$/i);
+        addr.mac && assert.match(addr.mac, /^(?:[a-z0-9]{2}:){5}[a-z0-9]{2}$/i);
         addr.ip && assert.match(addr.ip, /^\d+\.\d+\.\d+\.\d+$/);
         done();
       });
@@ -128,7 +128,7 @@ describe('test/address.test.ts', () => {
       addressAll.mac((err, mac) => {
         assert(!err);
         assert(mac);
-        assert.match(mac, /(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        assert.match(mac, /(?:[a-z0-9]{2}:){5}[a-z0-9]{2}/i);
         done();
       });
     });
@@ -148,7 +148,7 @@ describe('test/address.test.ts', () => {
       addressAll.mac(os.platform() === 'linux' ? 'eth' : 'en', (err, mac) => {
         assert(!err);
         assert(mac);
-        assert.match(mac, /(?:[a-z0-9]{2}\:){5}[a-z0-9]{2}/i);
+        assert.match(mac, /(?:[a-z0-9]{2}:){5}[a-z0-9]{2}/i);
         done();
       });
     });
