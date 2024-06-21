@@ -1,0 +1,10 @@
+{
+  "$schema": "https://registry.npmmirror.com/oxlint/latest/files/configuration_schema.json",
+  "extends": [
+    "eslint-config-egg/typescript",
+    "eslint-config-egg/lib/rules/enforce-node-prefix"
+  ],
+  "rule": {
+    "eqeqeq": "error"
+  }
+}
