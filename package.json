@@ -17,7 +17,7 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^24.0.0",
     "egg-bin": "^6.5.2",
-    "eslint": "^8.49.0",
+    "eslint": "^10.0.0",
     "eslint-config-egg": "^13.0.0",
     "git-contributor": "^2.1.5",
     "mm": "^3.3.0",
