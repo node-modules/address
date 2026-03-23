@@ -24,7 +24,7 @@
     "runscript": "^1.5.3",
     "tshy": "^1.1.1",
     "tshy-after": "^1.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^6.0.0"
   },
   "repository": {
     "type": "git",
