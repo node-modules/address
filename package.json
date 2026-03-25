@@ -22,7 +22,7 @@
     "git-contributor": "^2.1.5",
     "mm": "^3.3.0",
     "runscript": "^1.5.3",
-    "tshy": "^1.1.1",
+    "tshy": "^4.0.0",
     "tshy-after": "^1.0.0",
     "typescript": "^5.2.2"
   },
